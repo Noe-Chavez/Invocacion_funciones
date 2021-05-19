@@ -1,0 +1,61 @@
+Microsoft (R) Macro Assembler Version 14.28.29914.0	    05/19/21 11:42:42
+MisFunciones.asm					     Page 1 - 1
+
+
+					.386
+					.MODEL flat, C
+
+					.STACK 2560
+
+ 00000000				.DATA
+
+ 00000000				.CODE
+
+				; int Suma(int a, int b)
+ 00000000			Suma PROC, a:DWORD, b:DWORD
+ 00000003  8B 45 08			MOV EAX, a
+ 00000006  03 45 0C			ADD EAX, b
+					RET
+ 0000000B			Suma ENDP
+					END
+Microsoft (R) Macro Assembler Version 14.28.29914.0	    05/19/21 11:42:42
+MisFunciones.asm					     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00000A00 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000000B DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+Suma . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000000B Public C
+  a  . . . . . . . . . . . . . .	DWord	 bp + 00000008
+  b  . . . . . . . . . . . . . .	DWord	 bp + 0000000C
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000001h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+
+	   0 Warnings
+	   0 Errors
