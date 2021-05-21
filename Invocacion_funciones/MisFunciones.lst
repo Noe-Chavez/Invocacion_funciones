@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 14.28.29914.0	    05/19/21 11:42:42
+Microsoft (R) Macro Assembler Version 14.28.29915.0	    05/20/21 20:24:39
 MisFunciones.asm					     Page 1 - 1
 
 
@@ -13,12 +13,41 @@ MisFunciones.asm					     Page 1 - 1
 
 				; int Suma(int a, int b)
  00000000			Suma PROC, a:DWORD, b:DWORD
- 00000003  8B 45 08			MOV EAX, a
- 00000006  03 45 0C			ADD EAX, b
+ 00000003  8B 45 08			MOV EAX, [a]
+ 00000006  03 45 0C			ADD EAX, [b]
 					RET
  0000000B			Suma ENDP
+
+ 0000000B			BuscarCaracter PROC, pCad:DWORD, caracter:BYTE
+					;las agerga el compilador
+					;PUSH EBP				; guardar en la pila 
+					;MOV EBP, ESP			; todos los registros utilizados
+ 0000000E  B9 00000000			MOV ECX, 0				; i = 0, contador ECX
+ 00000013  BB FFFFFFFF			MOV EBX, -1				; ind = -1 EBX
+ 00000018  8B 75 08			MOV ESI, [pCad]			; p = pCad - ESI <-- pCad
+ 0000001B			Ini_For:			
+ 0000001B  8A 06			MOV AL, [ESI]			; AL <-- *ESI[cont] 
+ 0000001D  3C 00			CMP AL, 0				; AL <-- 0  => z = 1 si AL <-- 0 == 0, z=0 si AL <-- 0 /= 0
+ 0000001F  74 0D			JE Fin_For
+ 00000021  3A 45 0C			CMP AL, [caracter]		; AL <-- Adr(c) => 0 -> z = 1, /= 0 z = 0
+ 00000024  75 04			JNE Fin_if				
+ 00000026  8B D9			MOV EBX, ECX			; ind <-- i
+ 00000028  EB 04			JMP Fin_For				; brack
+ 0000002A			Fin_if:
+ 0000002A  41				INC ECX
+ 0000002B  46				INC ESI
+ 0000002C  EB ED			JMP Ini_For
+ 0000002E			Fin_For:
+ 0000002E  8B C3			MOV EAX, EBX			; retun ind
+ 00000030  5E				POP ESI					; Restaurar el estado 
+ 00000031  5B				POP EBX					; de los registros
+ 00000032  59				POP ECX					; utilizados.
+					;POP EBP; LEAVE - lo agrega el compilador.
+ 00000034  C2 0008			RET	8
+ 00000037			BuscarCaracter ENDP
+
 					END
-Microsoft (R) Macro Assembler Version 14.28.29914.0	    05/19/21 11:42:42
+Microsoft (R) Macro Assembler Version 14.28.29915.0	    05/20/21 20:24:39
 MisFunciones.asm					     Symbols 2 - 1
 
 
@@ -31,13 +60,19 @@ Segments and Groups:
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00000A00 DWord	  Stack	  'STACK'	 
 _DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 0000000B DWord	  Public  'CODE'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000037 DWord	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
 
                 N a m e                 Type     Value    Attr
 
+BuscarCaracter . . . . . . . . .	P Near	 0000000B _TEXT	Length= 0000002C Public C
+  pCad . . . . . . . . . . . . .	DWord	 bp + 00000008
+  caracter . . . . . . . . . . .	Byte	 bp + 0000000C
+  Ini_For  . . . . . . . . . . .	L Near	 0000001B _TEXT	
+  Fin_if . . . . . . . . . . . .	L Near	 0000002A _TEXT	
+  Fin_For  . . . . . . . . . . .	L Near	 0000002E _TEXT	
 Suma . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000000B Public C
   a  . . . . . . . . . . . . . .	DWord	 bp + 00000008
   b  . . . . . . . . . . . . . .	DWord	 bp + 0000000C
