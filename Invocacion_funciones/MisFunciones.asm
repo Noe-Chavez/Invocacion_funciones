@@ -18,6 +18,9 @@ BuscarCaracter PROC, pCad:DWORD, caracter:BYTE
 	;las agerga el compilador
 	;PUSH EBP				; guardar en la pila 
 	;MOV EBP, ESP			; todos los registros utilizados
+	PUSH ECX				; agregando registro a la pila.
+	PUSH EBX
+	PUSH ESI
 	MOV ECX, 0				; i = 0, contador ECX
 	MOV EBX, -1				; ind = -1 EBX
 	MOV ESI, [pCad]			; p = pCad - ESI <-- pCad
@@ -38,7 +41,7 @@ Fin_For:
 	POP ESI					; Restaurar el estado 
 	POP EBX					; de los registros
 	POP ECX					; utilizados.
-	;POP EBP; LEAVE - lo agrega el compilador.
+	;POP EBP				; LEAVE - lo agrega el compilador.
 	RET	8
 BuscarCaracter ENDP
 
