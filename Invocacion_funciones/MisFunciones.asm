@@ -42,7 +42,7 @@ Fin_For:
 	POP EBX					; de los registros
 	POP ECX					; utilizados.
 	;POP EBP				; LEAVE - lo agrega el compilador.
-	RET	8
+	RET	
 BuscarCaracter ENDP
 
 	END

@@ -10,5 +10,5 @@ int main()
     char cad[] = "Hola Mundo";
 
     // cout << "*****\nllamada a la funcion Suma " << Suma(5, 8) << endl;
-    cout << "llamada a la funcion BuscarCaracter" << BuscarCaracter(cad, 'M') << endl;
+    cout << "llamada a la funcion BuscarCaracter - posision " << BuscarCaracter(cad, 'M') << endl;
 }

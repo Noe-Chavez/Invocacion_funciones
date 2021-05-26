@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 14.28.29915.0	    05/24/21 14:32:56
+Microsoft (R) Macro Assembler Version 14.28.29915.0	    05/26/21 18:48:27
 MisFunciones.asm					     Page 1 - 1
 
 
@@ -46,11 +46,11 @@ MisFunciones.asm					     Page 1 - 1
  00000034  5B				POP EBX					; de los registros
  00000035  59				POP ECX					; utilizados.
 					;POP EBP				; LEAVE - lo agrega el compilador.
- 00000037  C2 0008			RET	8
- 0000003A			BuscarCaracter ENDP
+					RET	
+ 00000038			BuscarCaracter ENDP
 
 					END
-Microsoft (R) Macro Assembler Version 14.28.29915.0	    05/24/21 14:32:56
+Microsoft (R) Macro Assembler Version 14.28.29915.0	    05/26/21 18:48:27
 MisFunciones.asm					     Symbols 2 - 1
 
 
@@ -63,14 +63,14 @@ Segments and Groups:
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00000A00 DWord	  Stack	  'STACK'	 
 _DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 0000003A DWord	  Public  'CODE'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000038 DWord	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
 
                 N a m e                 Type     Value    Attr
 
-BuscarCaracter . . . . . . . . .	P Near	 0000000B _TEXT	Length= 0000002F Public C
+BuscarCaracter . . . . . . . . .	P Near	 0000000B _TEXT	Length= 0000002D Public C
   pCad . . . . . . . . . . . . .	DWord	 bp + 00000008
   caracter . . . . . . . . . . .	Byte	 bp + 0000000C
   Ini_For  . . . . . . . . . . .	L Near	 0000001E _TEXT	
